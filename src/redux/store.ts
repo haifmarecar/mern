@@ -1,16 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slices/authSlice'; // We will create this slice
-
-const store = configureStore({
+import authReducer from './slices/authSlice';
+import orderReducer from './slices/order/orderSlice';
+import productReducer from './slices/product/productSlice'; 
+export const store = configureStore({
   reducer: {
     auth: authReducer,
-    // Add other reducers here as you create more slices
+    order: orderReducer,
+    product: productReducer, // Keep 'product' as the reducer key
   },
-  // Optionally add middleware, devTools, etc.
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-export default store;
